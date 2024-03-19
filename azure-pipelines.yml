@@ -18,38 +18,6 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: 'pytest -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5'
+- script: 'pytest -n 5'
 
   displayName: 'Run Python Tests'
-
-
-
-- task: PublishPipelineArtifact@1
-
-  displayName: 'Publish Pipeline Artifact'
-
-  inputs:
-
-    targetPath: 'C:\Users\rafael.franca\Documents\Agents\Reports'
-
-    artifact: 'Test_Reports'
-
-
-
-- task: PublishTestResults@2
-
-  displayName: 'Publish Test Results'
-
-  inputs:
-
-    testResultsFormat: NUnit
-
-    testResultsFiles: '**/*-results.xml'
-
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Html Report'
-  inputs:
-    pathToPublish: 'C:\Users\rafael.franca\Documents\Agents\Reports'
-    artifactName: 'html-reports'
-
