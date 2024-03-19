@@ -21,3 +21,13 @@ steps:
 - script: 'pytest --html=reports/report-all.html -n 5'
 
   displayName: 'Run Python Tests'
+  
+- task: PublishTestResults@2
+
+  displayName: 'Publish Test Results'
+
+  inputs:
+
+    testResultsFormat: NUnit
+
+    testResultsFiles: '**/*-results.xml'
