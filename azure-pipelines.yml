@@ -18,7 +18,7 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: 'pytest -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5 --browsername %browser%'
+- script: 'pytest -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml'
 
   displayName: 'Run Python Tests'
 
