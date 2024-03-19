@@ -9,6 +9,7 @@ import time
 
 @pytest.mark.usefixtures("setup_teardown")
 @pytest.mark.carrinho
+@pytest.mark.saucedemo
 class TestCT01:
     def test_ct01_add_carrinho(self):
         # pom objects
@@ -38,3 +39,4 @@ class TestCT01:
         # checkout and finish
         checkout_page.preencher_infos_checkout()
         checkout_page.finalizar_carrinho_e_verificar_se_sucesso()
+        

@@ -4,6 +4,7 @@ from pages.login_page import LoginPage
 
 @pytest.mark.usefixtures("setup_teardown")
 @pytest.mark.login
+@pytest.mark.saucedemo
 class TestCT03:
     def test_ct03_login_inválido(self):
         login_page = LoginPage()

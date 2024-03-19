@@ -5,6 +5,7 @@ from pages.home_page import HomePage
 
 @pytest.mark.usefixtures("setup_teardown")
 @pytest.mark.login
+@pytest.mark.saucedemo
 class TestCT02:
     def test_ct02_login_valido(self):
         login_page = LoginPage()
