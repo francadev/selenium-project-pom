@@ -18,6 +18,6 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: 'pytest -n 5'
+- script: 'pytest --html=reports/report-all.html -n 5'
 
   displayName: 'Run Python Tests'
