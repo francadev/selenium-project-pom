@@ -18,7 +18,7 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: 'pytest -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml'
+- script: 'pytest -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5'
 
   displayName: 'Run Python Tests'
 
@@ -30,7 +30,7 @@ steps:
 
   inputs:
 
-    targetPath: 'D:\a\1\s\reports'
+    targetPath: 'C:\Users\rafael.franca\Documents\Agents\Reports'
 
     artifact: 'Test_Reports'
 
