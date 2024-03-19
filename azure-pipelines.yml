@@ -21,6 +21,15 @@ steps:
 - script: 'pytest --nunitxml=nunit/test-results.xml -n 5'
   displayName: 'Run Python Tests'
   
+- task: PublishPipelineArtifact@1
+
+  displayName: 'Publish Pipeline Artifact'
+
+  inputs:
+
+    targetPath: '/reports'
+    artifact: 'Test_Reports'
+
 - task: PublishTestResults@2
   displayName: 'Publish Test Results'
 
