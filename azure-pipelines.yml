@@ -45,3 +45,11 @@ steps:
     testResultsFormat: NUnit
 
     testResultsFiles: '**/*-results.xml'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Html Report'
+  inputs:
+    pathToPublish: 'C:\Users\rafael.franca\Documents\Agents\Reports'
+    artifactName: 'html-reports'
+
