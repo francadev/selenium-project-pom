@@ -1,0 +1,47 @@
+trigger:
+- main
+
+pool: my-personal-computer
+strategy:
+  matrix:
+    Python9:
+      python.version: '3.9'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+
+- script: 'pytest -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5 --browsername %browser%'
+
+  displayName: 'Run Python Tests'
+
+
+
+- task: PublishPipelineArtifact@1
+
+  displayName: 'Publish Pipeline Artifact'
+
+  inputs:
+
+    targetPath: 'D:\a\1\s\reports'
+
+    artifact: 'Test_Reports'
+
+
+
+- task: PublishTestResults@2
+
+  displayName: 'Publish Test Results'
+
+  inputs:
+
+    testResultsFormat: NUnit
+
+    testResultsFiles: '**/*-results.xml'
