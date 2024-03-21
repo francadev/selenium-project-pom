@@ -8,8 +8,12 @@ strategy:
       python.version: '3.9'
 
 steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
 - script: |
-    pip install coverage
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   displayName: 'Install dependencies'
