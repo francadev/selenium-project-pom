@@ -8,33 +8,32 @@ strategy:
       python.version: '3.9'
 
 steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
-
 - script: |
+    pip install coverage
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   displayName: 'Install dependencies'
-
-- script: 'pytest --html=.\reports\report.html --nunitxml=nunit/test-results.xml -n 5'
-  displayName: 'Run Python Tests with Coverage'
   
-- task: PublishPipelineArtifact@1
-  displayName: 'Publish Pipeline Artifact'
-  inputs:
-    targetPath: '/reports'
-    artifact: 'Test_Reports'
+- script: |
+    # Comando para executar testes e gerar report.html
+    pytest --html=.\reports\report.html
+  displayName: 'Run Tests and Generate report.html'
 
-- task: PublishTestResults@2
-  displayName: 'Publish Test Results'
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish report.html as Artifact'
   inputs:
-    testResultsFormat: NUnit
-    testResultsFiles: '**/*-results.xml'
+    targetPath: 'reports/report.html'
+    artifact: 'Test_Report'
+
+- script: |
+    # Script ou comando para analisar report.html e gerar um arquivo Cobertura XML
+    # Exemplo: coverage htmlcov --output-format xml
+    # Certifique-se de ajustar este comando conforme necessário
+    coverage htmlcov --output-format xml
+  displayName: 'Convert report.html to Cobertura XML'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish Code Coverage Results'
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '**/report.html'
+    summaryFileLocation: '**/coverage.xml'
