@@ -14,12 +14,11 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    pip install coverage
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: 'pytest --html=report.html -n 5'
+- script: 'pytest --html=report.html --nunitxml=nunit/test-results.xml -n 5'
   displayName: 'Run Tests and Generate report.html'
 
 - task: PublishPipelineArtifact@1
@@ -28,12 +27,15 @@ steps:
     targetPath: 'reports/report.html'
     artifact: 'Test_Report'
 
-- script: |
-    coverage xml
-  displayName: 'Convert report.html to Cobertura XML'
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: '**/*-results.xml'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish Code Coverage Results'
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '**/coverage.xml'
+    summaryFileLocation: '**/*-results.xml'
