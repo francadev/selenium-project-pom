@@ -33,9 +33,3 @@ steps:
   inputs:
     testResultsFormat: NUnit
     testResultsFiles: '**/*-results.xml'
-
-- task: PublishCodeCoverageResults@1
-  displayName: 'Publish Code Coverage Results'
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '**/*-results.xml'
