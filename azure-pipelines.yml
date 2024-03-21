@@ -15,12 +15,10 @@ steps:
 
 - script: |
     python -m pip install --upgrade pip
-    pip install pytest-cov
-    pip install coverage
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: 'pytest --cov=my_module --cov-report=html --html=.\reports\report.html --nunitxml=nunit/test-results.xml -n 5'
+- script: 'pytest --html=.\reports\report.html --nunitxml=nunit/test-results.xml -n 5'
   displayName: 'Run Python Tests with Coverage'
   
 - task: PublishPipelineArtifact@1
@@ -39,4 +37,4 @@ steps:
   displayName: 'Publish Code Coverage Results'
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '**/coverage.xml'
+    summaryFileLocation: '**/report.html'
