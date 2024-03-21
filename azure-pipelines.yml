@@ -1,7 +1,7 @@
 trigger:
 - main
 
-pool: Azure Pipelines
+pool: my-personal-computer
 strategy:
   matrix:
     Python9:
