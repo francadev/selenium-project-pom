@@ -18,7 +18,7 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: 'pytest --html=.\reports\Report.html --nunitxml=nunit/test-results.xml -n 5'
+- script: 'pytest --html=.\reports\report.html --nunitxml=nunit/test-results.xml -n 5'
   displayName: 'Run Python Tests'
   
 - task: PublishPipelineArtifact@1
@@ -36,10 +36,3 @@ steps:
   inputs:
     testResultsFormat: NUnit
     testResultsFiles: '**/*-results.xml'
-
-- task: PublishTestResults@2
-  displayName: 'Publish HTML Test Results'
-
-  inputs:
-    testResultsFormat: NUnit
-    testResultsFiles: '**/*-Report.html'
