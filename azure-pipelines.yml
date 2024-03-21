@@ -29,7 +29,7 @@ steps:
     artifact: 'Test_Report'
 
 - script: |
-    coverage htmlcov --output-format xml
+    coverage htmlcov --xml
   displayName: 'Convert report.html to Cobertura XML'
 
 - task: PublishCodeCoverageResults@1
