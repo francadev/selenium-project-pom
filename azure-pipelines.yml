@@ -15,7 +15,6 @@ steps:
   displayName: 'Install dependencies'
   
 - script: |
-    # Comando para executar testes e gerar report.html
     pytest --html=.\reports\report.html
   displayName: 'Run Tests and Generate report.html'
 
@@ -26,10 +25,6 @@ steps:
     artifact: 'Test_Report'
 
 - script: |
-    # Script ou comando para analisar report.html e gerar um arquivo Cobertura XML
-    # Exemplo: coverage htmlcov --output-format xml
-    # Certifique-se de ajustar este comando conforme necessário
-    coverage htmlcov --output-format xml
   displayName: 'Convert report.html to Cobertura XML'
 
 - task: PublishCodeCoverageResults@1
