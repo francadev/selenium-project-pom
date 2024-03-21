@@ -19,7 +19,7 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: 'pytest --html=.\reports\report.html -n 5'
+- script: 'pytest --html=report.html -n 5'
   displayName: 'Run Tests and Generate report.html'
 
 - task: PublishPipelineArtifact@1
@@ -29,7 +29,6 @@ steps:
     artifact: 'Test_Report'
 
 - script: |
-    cd reports  
     coverage xml
   displayName: 'Convert report.html to Cobertura XML'
 
