@@ -13,9 +13,8 @@ steps:
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   displayName: 'Install dependencies'
-  
-- script: |
-    pytest --html=.\reports\report.html
+
+- script: 'pytest --html=.\reports\report.html -n 5'
   displayName: 'Run Tests and Generate report.html'
 
 - task: PublishPipelineArtifact@1
