@@ -22,10 +22,12 @@ steps:
   displayName: 'Run Tests and Generate report.html'
 
 - task: PublishPipelineArtifact@1
-  displayName: 'Publish report.html as Artifact'
+
+  displayName: 'Publish Pipeline Artifact'
   inputs:
-    targetPath: 'reports/report.html'
-    artifact: 'Test_Report'
+    targetPath: '/reports'
+    artifact: 'Test_Reports'
+
 
 - task: PublishTestResults@2
   displayName: 'Publish Test Results'
