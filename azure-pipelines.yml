@@ -29,6 +29,7 @@ steps:
     artifact: 'Test_Report'
 
 - script: |
+    cd reports  
     coverage xml
   displayName: 'Convert report.html to Cobertura XML'
 
